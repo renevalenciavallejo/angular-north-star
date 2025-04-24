@@ -11,7 +11,7 @@
     "title": "Iniciar Sesión"
   },
   "forms": {
-    "validation": {
+    "validators": {
       "email": "Este correo electrónico no es válido.",
       "required": "Este campo es obligatorio."
     }

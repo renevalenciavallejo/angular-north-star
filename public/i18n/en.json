@@ -11,7 +11,7 @@
     "create-account": "Create an account"
   },
   "forms": {
-    "validation": {
+    "validators": {
       "email": "This email address is not valid.",
       "required": "This field is required."
     }

@@ -19,9 +19,9 @@
       @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
       <div class="error-message">
         @if (loginForm.get('email')?.errors?.['required']) {
-        <div>{{ t("forms.validation.required") }}</div>
+        <div>{{ t("forms.validators.required") }}</div>
         } @if (loginForm.get('email')?.errors?.['email']) {
-        <div>{{ t("forms.validation.email") }}</div>
+        <div>{{ t("forms.validators.email") }}</div>
         }
       </div>
       }
@@ -50,7 +50,7 @@
         "
       >
         <div *ngIf="loginForm.get('password')?.errors?.['required']">
-          {{ t("forms.validation.required") }}
+          {{ t("forms.validators.required") }}
         </div>
       </div>
     </div>
