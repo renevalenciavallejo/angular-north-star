@@ -1,0 +1,19 @@
+{
+  "account.login": {
+    "create-account": "Crear una cuenta",
+    "dont-have-account": "¿No tienes una cuenta?",
+    "forgot-password": "¿Olvidaste tu contraseña?",
+    "loginForm": {
+      "email": "Correo electrónico",
+      "login": "Iniciar Sesión",
+      "password": "Contraseña"
+    },
+    "title": "Iniciar Sesión"
+  },
+  "forms": {
+    "validation": {
+      "email": "Este correo electrónico no es válido.",
+      "required": "Este campo es obligatorio."
+    }
+  }
+}

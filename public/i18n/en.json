@@ -1,0 +1,19 @@
+{
+  "account.login": {
+    "title": "Login",
+    "loginForm": {
+      "email": "Email",
+      "password": "Password",
+      "login": "Login"
+    },
+    "dont-have-account": "Don't have an account?",
+    "forgot-password": "Forgot your password?",
+    "create-account": "Create an account"
+  },
+  "forms": {
+    "validation": {
+      "email": "This email address is not valid.",
+      "required": "This field is required."
+    }
+  }
+}

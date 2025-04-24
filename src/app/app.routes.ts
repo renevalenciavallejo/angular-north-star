@@ -35,19 +35,19 @@ export const routes: Routes = [
         component: LoginComponent,
       },
       {
-        path: 'account/register',
+        path: 'register',
         component: RegisterComponent,
       },
       {
-        path: 'account/confirm-email',
+        path: 'confirm-email',
         component: ConfirmEmailComponent,
       },
       {
-        path: 'account/forgot-password',
+        path: 'forgot-password',
         component: ResetPasswordStep1Component,
       },
       {
-        path: 'account/reset-password',
+        path: 'reset-password',
         component: ResetPasswordStep2Component,
       },
     ],

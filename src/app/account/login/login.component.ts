@@ -8,10 +8,17 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { TranslocoDirective } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-login',
-  imports: [RouterLink, RouterLinkActive, ReactiveFormsModule, CommonModule],
+  imports: [
+    RouterLink,
+    RouterLinkActive,
+    ReactiveFormsModule,
+    CommonModule,
+    TranslocoDirective,
+  ],
   templateUrl: './login.component.html',
   styles: ``,
 })
