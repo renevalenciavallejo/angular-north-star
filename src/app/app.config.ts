@@ -1,10 +1,10 @@
 import {
   ApplicationConfig,
   provideZoneChangeDetection,
+  ErrorHandler,
   isDevMode,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
-
 import { routes } from './app.routes';
 import {
   provideClientHydration,
@@ -13,6 +13,7 @@ import {
 import { provideHttpClient } from '@angular/common/http';
 import { TranslocoHttpLoader } from './transloco-loader';
 import { provideTransloco } from '@ngneat/transloco';
+import { GlobalErrorHandler } from './global-error-handler';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -30,5 +31,9 @@ export const appConfig: ApplicationConfig = {
       },
       loader: TranslocoHttpLoader,
     }),
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler,
+    },
   ],
 };
