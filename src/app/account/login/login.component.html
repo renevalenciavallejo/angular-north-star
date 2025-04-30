@@ -1,5 +1,5 @@
-<section *transloco="let t">
-  <h2>{{ t("account.login.title") }}</h2>
+<section>
+  <h2>{{ "account.login.title" | translate }}</h2>
   @if (loginForm.errors && loginForm.errors['error-message']) {
   <div>
     {{ loginForm.errors["error-message"] }}
@@ -9,7 +9,7 @@
     <div class="form-group">
       <div>
         <label for="email">
-          {{ t("account.login.loginForm.email") }}
+          {{ "account.login.loginForm.email" | translate }}
         </label>
       </div>
       <div>
@@ -27,9 +27,9 @@
       @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
       <div>
         @if (loginForm.get('email')?.errors?.['required']) {
-        <div>{{ t("forms.validators.required") }}</div>
+        <div>{{ "forms.validators.required" | translate }}</div>
         } @if (loginForm.get('email')?.errors?.['email']) {
-        <div>{{ t("forms.validators.email") }}</div>
+        <div>{{ "forms.validators.email" | translate }}</div>
         } @if (loginForm.get('email')?.errors?.['apiErrors']) {
         <div>{{ loginForm.get('email')?.errors?.['apiErrors'] }}</div>
         }
@@ -40,7 +40,7 @@
     <div class="form-group">
       <div>
         <label for="password">
-          {{ t("account.login.loginForm.password") }}
+          {{ "account.login.loginForm.password" | translate }}
         </label>
       </div>
       <div>
@@ -60,7 +60,7 @@
       loginForm.get('password')?.touched) {
       <div>
         @if (loginForm.get('password')?.errors?.['required']) {
-        <div>{{ t("forms.validators.required") }}</div>
+        <div>{{ "forms.validators.required" | translate }}</div>
         } @if (loginForm.get('password')?.errors?.['apiErrors']) {
         <div>{{ loginForm.get('password')?.errors?.['apiErrors'] }}</div>
         }
@@ -73,7 +73,7 @@
         routerLink="/account/forgot-password"
         routerLinkActive="active"
         ariaCurrentWhenActive="page"
-        >{{ t("account.login.forgot-password") }}</a
+        >{{ "account.login.forgot-password" | translate }}</a
       >
     </div>
 
@@ -82,17 +82,17 @@
       [disabled]="loginForm.invalid"
       class="btn btn-primary"
     >
-      {{ t("account.login.loginForm.login") }}
+      {{ "account.login.loginForm.login" | translate }}
     </button>
   </form>
 
   <div>
-    {{ t("account.login.dont-have-account") }}
+    {{ "account.login.dont-have-account" | translate }}
     <a
       routerLink="/account/register"
       routerLinkActive="active"
       ariaCurrentWhenActive="page"
-      >{{ t("account.login.create-account") }}</a
+      >{{ "account.login.create-account" | translate }}</a
     >
   </div>
 </section>

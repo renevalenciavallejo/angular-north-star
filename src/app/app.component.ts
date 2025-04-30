@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { RouterOutlet } from '@angular/router';
-import { TranslocoService } from '@ngneat/transloco';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
 @Component({
@@ -11,11 +11,14 @@ import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 })
 export class AppComponent implements OnInit {
   title = 'angular-north-star';
-  private supportedLangs = ['en', 'es'];
-  private defaultLang = 'en';
-  private translocoService = inject(TranslocoService);
-  private document: Document = inject(DOCUMENT);
+  private readonly document: Document = inject(DOCUMENT);
   private readonly platformId = inject(PLATFORM_ID);
+  private readonly translate = inject(TranslateService);
+  private readonly supportedLangs = ['es', 'en'];
+
+  constructor() {
+    this.translate.addLangs(this.supportedLangs);
+  }
 
   ngOnInit() {
     const lang = this.getPreferredLanguage();
@@ -35,11 +38,11 @@ export class AppComponent implements OnInit {
       }
     }
 
-    return this.defaultLang;
+    return this.translate.getDefaultLang();
   }
 
   private setLanguage(lang: string) {
-    this.translocoService.setActiveLang(lang);
+    this.translate.use(lang);
     this.document.documentElement.lang = lang;
   }
 }

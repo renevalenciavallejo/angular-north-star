@@ -1,25 +1,24 @@
 import { ErrorHandler, Injectable, inject } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { TranslocoService } from '@ngneat/transloco';
-
+import { TranslateService } from '@ngx-translate/core';
 @Injectable({
   providedIn: 'root',
 })
 export class GlobalErrorHandler implements ErrorHandler {
-  transloco = inject(TranslocoService);
+  private translate = inject(TranslateService);
 
   handleError(error: any) {
     if (error instanceof HttpErrorResponse) {
       if (!navigator.onLine) {
-        alert(this.transloco.translate('error.noInternet'));
+        console.log(this.getMessage('error.noInternet'));
         return;
       }
       switch (error.status) {
         case 401:
-          alert(this.transloco.translate('error.401'));
+          console.log(this.getMessage('error.401'));
           break;
         case 403:
-          alert(this.transloco.translate('error.403'));
+          console.log(this.getMessage('error.403'));
           break;
         case 400:
           if (
@@ -30,23 +29,35 @@ export class GlobalErrorHandler implements ErrorHandler {
             return;
           }
           if (error.error && error.error.message) {
-            alert(error.error.message);
+            console.log(error.error.message);
           } else {
-            alert(this.transloco.translate('error.400'));
+            console.log(this.getMessage('error.400'));
           }
           break;
         case 404:
-          alert(this.transloco.translate('error.404'));
+          console.log(this.getMessage('error.404'));
           break;
         case 500:
-          alert(this.transloco.translate('error.500'));
+          console.log(this.getMessage('error.500'));
           break;
         default:
-          alert(this.transloco.translate('error.default'));
+          console.log(this.getMessage('error.default'));
           break;
       }
     } else {
-      alert(this.transloco.translate('error.default'));
+      console.error(error);
+      console.log(this.getMessage('error.default'));
     }
+  }
+
+  private getMessage(key: string) {
+    let message: string = '';
+    if (!key) return message;
+
+    this.translate.get(key).subscribe((res) => {
+      message = res;
+    });
+
+    return message;
   }
 }

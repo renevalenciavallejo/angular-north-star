@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { RouterLinkActive } from '@angular/router';
+import { Component, inject, OnInit } from '@angular/core';
+import { Router, RouterLinkActive, ActivatedRoute } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import {
   FormBuilder,
@@ -8,8 +8,8 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { TranslocoDirective } from '@ngneat/transloco';
 import { AuthService } from '../../core/services/account/auth.service';
+import { TranslatePipe } from '@ngx-translate/core';
 import { FormValidationService } from '../../core/services/error-handler/form-validation.service';
 
 @Component({
@@ -19,19 +19,28 @@ import { FormValidationService } from '../../core/services/error-handler/form-va
     RouterLinkActive,
     ReactiveFormsModule,
     CommonModule,
-    TranslocoDirective,
+    TranslatePipe,
   ],
   templateUrl: './login.component.html',
   styles: ``,
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   private fb = inject(FormBuilder);
   private readonly authService = inject(AuthService);
   private readonly formValidationService = inject(FormValidationService);
+  private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
   loginForm!: FormGroup;
+  returnUrl: string = '/';
 
   constructor() {
     this.buildForm();
+  }
+
+  ngOnInit() {
+    this.route.queryParams.subscribe((params) => {
+      this.returnUrl = params['returnUrl'] || '/';
+    });
   }
 
   onSubmit(event: Event) {
@@ -40,7 +49,7 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
         next: (result) => {
-          console.log('Login result:', result);
+          this.router.navigate(['/']);
         },
         error: (error) => {
           this.formValidationService.showFormValidationErrors(

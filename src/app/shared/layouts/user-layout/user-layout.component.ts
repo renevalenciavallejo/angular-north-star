@@ -5,10 +5,8 @@ import { RouterOutlet } from '@angular/router';
   selector: 'app-user-layout',
   imports: [RouterOutlet],
   template: `
-    <p>
-      user-layout works!
-      <router-outlet />
-    </p>
+    <p>user-layout works!</p>
+    <router-outlet />
   `,
   styles: ``,
 })

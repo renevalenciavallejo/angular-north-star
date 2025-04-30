@@ -8,16 +8,23 @@ import { ResetPasswordStep1Component } from './account/reset-password-step-1/res
 import { ResetPasswordStep2Component } from './account/reset-password-step-2/reset-password-step-2.component';
 import { AccountLayoutComponent } from './shared/layouts/account-layout/account-layout.component';
 import { UserLayoutComponent } from './shared/layouts/user-layout/user-layout.component';
+import { authGuard } from './core/guards/auth.guard';
+import { ProfileComponent } from './profile/profile.component';
 
 export const routes: Routes = [
   {
     path: '',
     component: UserLayoutComponent,
+    canActivate: [authGuard],
     children: [
       {
         path: '',
         component: HomeComponent,
         pathMatch: 'full',
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
       },
     ],
   },
